@@ -18,13 +18,4 @@ class AuthController extends AbstractController
         return new JsonResponse(['message' => 'Authenticating...']);
     }
 
-    #[Route('/delete-account', name: 'delete_account', methods: ['DELETE'])]
-    public function deleteAccount(EntityManagerInterface $em): JsonResponse
-    {
-        $user = $this->getUser();
-        $em->remove($user);
-        $em->flush();
-
-        return new JsonResponse(['message' => 'Account deleted']);
-    }
 }
