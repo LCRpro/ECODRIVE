@@ -1,0 +1,4 @@
+# config/services_test.yaml
+services:
+    App\Service\GoogleOAuthService:
+        class: App\Tests\Mock\MockedGoogleOAuthService
