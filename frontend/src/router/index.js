@@ -3,6 +3,8 @@ import Login from '../views/Login.vue'
 import Home from '../views/Home.vue'
 import Profile from '../views/Profile.vue'
 import ProfileComplete from '../views/ProfileComplete.vue'
+import Course from '../views/Course.vue'
+
 
 const isAuthenticated = () => !!localStorage.getItem('token')
 
@@ -33,7 +35,10 @@ const routes = [
   { path: '/', component: Home, beforeEnter: guardAuth },
   { path: '/login', component: Login },
   { path: '/me', component: Profile, beforeEnter: requireAuth },
-  { path: '/profile/complete', component: ProfileComplete, beforeEnter: requireAuth }
+  { path: '/profile/complete', component: ProfileComplete, beforeEnter: requireAuth },
+  { path: '/course', component: Course, beforeEnter: requireAuth },
+
+  
 ]
 
 export default createRouter({

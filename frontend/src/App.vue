@@ -34,6 +34,8 @@ onMounted(async () => {
           <img src="/logo-ecodrive.png" alt="ECODRIVE Logo" class="h-12 sm:h-16 md:h-20 lg:h-24 w-auto" />
           <router-link to="/" class="text-gray-700 hover:text-blue-700">Accueil</router-link>
           <router-link to="/me" class="text-gray-700 hover:text-blue-700">Profil</router-link>
+          <router-link to="/course" class="text-gray-700 hover:text-blue-700">Course</router-link>
+
         </div>
         <div v-if="userName" class="relative group">
           <button class="bg-blue-600 text-white px-4 py-2 rounded hover:bg-blue-700">
