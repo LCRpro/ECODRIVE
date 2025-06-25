@@ -26,6 +26,48 @@ class User implements UserInterface
     #[ORM\Column]
     private array $roles = [];
 
+    #[ORM\Column(type: 'date', nullable: true)]
+private ?\DateTimeInterface $birthday = null;
+
+#[ORM\Column(length: 10, nullable: true)]
+private ?string $gender = null;
+
+#[ORM\Column(length: 255, nullable: true)]
+private ?string $address = null;
+
+public function getBirthday(): ?\DateTimeInterface
+{
+    return $this->birthday;
+}
+
+public function setBirthday(?\DateTimeInterface $birthday): static
+{
+    $this->birthday = $birthday;
+    return $this;
+}
+
+public function getGender(): ?string
+{
+    return $this->gender;
+}
+
+public function setGender(?string $gender): static
+{
+    $this->gender = $gender;
+    return $this;
+}
+
+public function getAddress(): ?string
+{
+    return $this->address;
+}
+
+public function setAddress(?string $address): static
+{
+    $this->address = $address;
+    return $this;
+}
+
     public function getId(): ?int
     {
         return $this->id;
