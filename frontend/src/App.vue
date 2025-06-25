@@ -1,6 +1,8 @@
 <script setup>
 import HelloWorld from './components/HelloWorld.vue'
 import TheWelcome from './components/TheWelcome.vue'
+import LoginView from './views/LoginView.vue'
+
 </script>
 
 <template>
@@ -13,7 +15,8 @@ import TheWelcome from './components/TheWelcome.vue'
   </header>
 
   <main>
-    <TheWelcome />
+     <LoginView />
+
   </main>
 </template>
 
