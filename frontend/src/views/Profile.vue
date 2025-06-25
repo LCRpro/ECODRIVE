@@ -1,9 +1,34 @@
 <template>
   <div class="p-4">
     <h1 class="text-2xl font-bold mb-4">Mes informations</h1>
-    <pre class="bg-gray-100 p-4 rounded">{{ me }}</pre>
+    <div class="space-y-4 mb-4">
+      <div>
+        <label class="block text-gray-700 text-sm font-medium">Nom</label>
+        <input :value="me?.name" type="text" disabled class="w-full border rounded p-2 bg-gray-100 text-gray-700" />
+      </div>
+      <div>
+        <label class="block text-gray-700 text-sm font-medium">Email</label>
+        <input :value="me?.email" type="text" disabled class="w-full border rounded p-2 bg-gray-100 text-gray-700" />
+      </div>
+      <div>
+        <label class="block text-gray-700 text-sm font-medium">Date de naissance</label>
+        <input :value="me?.birthday" type="text" disabled class="w-full border rounded p-2 bg-gray-100 text-gray-700" />
+      </div>
+      <div>
+        <label class="block text-gray-700 text-sm font-medium">Genre</label>
+        <input :value="me?.gender" type="text" disabled class="w-full border rounded p-2 bg-gray-100 text-gray-700" />
+      </div>
+      <div>
+        <label class="block text-gray-700 text-sm font-medium">Adresse</label>
+        <input :value="me?.address" type="text" disabled class="w-full border rounded p-2 bg-gray-100 text-gray-700" />
+      </div>
+      <div>
+        <label class="block text-gray-700 text-sm font-medium">Rôle</label>
+        <input :value="me?.roles?.[0]" type="text" disabled class="w-full border rounded p-2 bg-gray-100 text-gray-700" />
+      </div>
+    </div>
 
-    <div class="mt-4 flex gap-4">
+    <div class="mt-4 flex gap-3">
       <button @click="showEdit = true" class="bg-blue-600 text-white px-4 py-2 rounded">
         Modifier mes infos
       </button>
