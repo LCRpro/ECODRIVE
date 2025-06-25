@@ -23,21 +23,37 @@ export default {
     );
   },
   methods: {
-    async handleCredentialResponse(response) {
-      const res = await fetch('http://localhost:8000/auth/google', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ id_token: response.credential }),
-      });
+   async handleCredentialResponse(response) {
+  const res = await fetch('http://localhost:8000/auth/google', {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify({ id_token: response.credential }),
+  });
 
-      const data = await res.json();
-      if (data.token) {
-        localStorage.setItem('token', data.token);
-        this.$router.push('/');
-      } else {
-        alert('Échec de la connexion');
-      }
-    },
+  const data = await res.json();
+  if (data.token) {
+    localStorage.setItem('token', data.token);
+
+    const meRes = await fetch('http://localhost:8000/me', {
+      headers: { Authorization: `Bearer ${data.token}` },
+    });
+
+    if (!meRes.ok) {
+      alert("Erreur lors de la récupération du profil");
+      return;
+    }
+
+    const me = await meRes.json();
+
+    if (!me.birthday || !me.gender || !me.address) {
+      this.$router.push('/profile/complete');
+    } else {
+      this.$router.push('/me');
+    }
+  } else {
+    alert('Échec de la connexion');
+  }
+},
   },
 };
 </script>
