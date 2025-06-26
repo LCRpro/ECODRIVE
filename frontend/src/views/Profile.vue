@@ -19,7 +19,7 @@
       <div class="max-w-xl mx-auto rounded-2xl shadow-lg bg-gradient-to-r from-green-100 via-green-50 to-white p-8 flex flex-col items-center mb-10 border border-green-100">
         <div class="relative mb-4">
           <img
-            :src="me?.avatar || '/assets/avatar.svg'"
+            :src="me?.avatar || defaultAvatar(me?.gender)"
             alt="Avatar"
             class="w-24 h-24 rounded-full border-4 border-white shadow-lg object-cover bg-white"
           />
@@ -188,12 +188,17 @@ export default {
       if (role === 'ROLE_PASSAGER') return 'Passager';
       return role || '-';
     },
-      displayGender(gender) {
-    if (gender === 'male') return 'Homme';
-    if (gender === 'female') return 'Femme';
-    if (gender === 'other') return 'Autre';
-    return gender || '-';
-  },
+    displayGender(gender) {
+      if (gender === 'male') return 'Homme';
+      if (gender === 'female') return 'Femme';
+      if (gender === 'other') return 'Autre';
+      return gender || '-';
+    },
+    defaultAvatar(gender) {
+      if (gender === 'male') return '/img/avatar/avatar-h.jpg'
+      if (gender === 'female') return '/img/avatar/avatar-f.jpg'
+      return '/img/avatar/avatar-a.png'
+    },
     async fetchMe() {
       const token = localStorage.getItem('token')
       const res = await fetch('http://localhost:8000/me', {
