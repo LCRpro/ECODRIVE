@@ -80,7 +80,7 @@ watch(
 </script>
 
 <template>
-  <div class="min-h-screen flex flex-col bg-gray-100 text-gray-900">
+  <div class="min-h-screen flex flex-col bg-white text-gray-900">
     <nav v-if="isAuthenticated" class="bg-white shadow">
       <div class="max-w-7xl mx-auto px-4  flex justify-between items-center">
         <div class="flex items-center space-x-4">
@@ -108,6 +108,7 @@ watch(
     </nav>
 
     <main class="flex-grow p-4">
+   
       <router-view />
     </main>
 
@@ -120,4 +121,8 @@ watch(
 </template>
 
 <style>
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700;900&display=swap');
+:root {
+  font-family: 'Montserrat', 'Segoe UI', Arial, sans-serif;
+}
 </style>
