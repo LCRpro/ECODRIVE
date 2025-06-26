@@ -35,6 +35,9 @@ private ?string $gender = null;
 #[ORM\Column(length: 255, nullable: true)]
 private ?string $address = null;
 
+#[ORM\Column(length: 255, nullable: true)]
+private ?string $avatar = null;
+
 public function getBirthday(): ?\DateTimeInterface
 {
     return $this->birthday;
@@ -65,6 +68,17 @@ public function getAddress(): ?string
 public function setAddress(?string $address): static
 {
     $this->address = $address;
+    return $this;
+}
+
+public function getAvatar(): ?string
+{
+    return $this->avatar;
+}
+
+public function setAvatar(?string $avatar): static
+{
+    $this->avatar = $avatar;
     return $this;
 }
 
