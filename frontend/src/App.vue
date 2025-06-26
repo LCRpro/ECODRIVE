@@ -113,6 +113,8 @@ watch(
 
     <footer class="bg-white text-center text-sm text-gray-600 py-4 shadow-inner">
       &copy; 2025 ECODRIVE. Tous droits réservés.
+                <router-link to="/mentions" class="text-gray-700 hover:text-blue-700">Mentions Légales</router-link>
+
     </footer>
   </div>
 </template>

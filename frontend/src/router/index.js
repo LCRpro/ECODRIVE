@@ -44,6 +44,7 @@ const routes = [
   { path: '/profile/complete', component: ProfileComplete, beforeEnter: requireAuth },
   { path: '/course', component: Course, beforeEnter: requireAuth },
   { path: '/500', name: 'ServerError', component: Error500 },
+  { path: '/mentions', component: () => import('../views/Mentions.vue') },
   { path: '/:pathMatch(.*)*', name: 'NotFound', component: Error404 },
   { path: '/403', name: 'Forbidden', component: Error403 },
 
