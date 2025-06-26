@@ -1,11 +1,16 @@
 <script setup>
-import { ref, onMounted } from 'vue'
+import { ref, onMounted, watch } from 'vue'
+import { useRouter } from 'vue-router'
+
+const router = useRouter()
 
 const userName = ref('')
+const isAuthenticated = ref(false)
 
 function logout() {
   localStorage.removeItem('token')
-  window.location.reload()
+  isAuthenticated.value = false
+  router.push('/login')
 }
 
 onMounted(async () => {
@@ -17,18 +22,66 @@ onMounted(async () => {
           Authorization: 'Bearer ' + token,
         },
       })
+
+      if (res.status === 401) {
+        logout()
+        return
+      }
+
+      if (res.status === 500) {
+        window.location.href = '/500'
+        return
+      }
+
       const data = await res.json()
       userName.value = data.name || 'Utilisateur'
+      isAuthenticated.value = true
     } catch (e) {
-      userName.value = 'Utilisateur'
+      logout()
     }
   }
 })
+
+watch(
+  () => router.currentRoute.value,
+  async () => {
+    const token = localStorage.getItem('token')
+    if (token) {
+      try {
+        const res = await fetch('http://localhost:8000/me', {
+          headers: {
+            Authorization: 'Bearer ' + token,
+          },
+        })
+
+        if (res.status === 401) {
+          logout()
+          return
+        }
+
+        if (res.status === 500) {
+          window.location.href = '/500'
+          return
+        }
+
+        const data = await res.json()
+        userName.value = data.name || 'Utilisateur'
+        isAuthenticated.value = true
+      } catch (e) {
+        logout()
+      }
+    } else {
+      isAuthenticated.value = false
+      userName.value = ''
+    }
+  },
+  { immediate: true }
+)
 </script>
 
 <template>
   <div class="min-h-screen flex flex-col bg-gray-100 text-gray-900">
-    <nav class="bg-white shadow">
+    <nav v-if="isAuthenticated" class="bg-white shadow">
       <div class="max-w-7xl mx-auto px-4  flex justify-between items-center">
         <div class="flex items-center space-x-4">
           <img src="/logo-ecodrive.png" alt="ECODRIVE Logo" class="h-12 sm:h-16 md:h-20 lg:h-24 w-auto" />

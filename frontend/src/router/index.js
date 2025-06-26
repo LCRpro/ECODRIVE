@@ -4,6 +4,12 @@ import Home from '../views/Home.vue'
 import Profile from '../views/Profile.vue'
 import ProfileComplete from '../views/ProfileComplete.vue'
 import Course from '../views/Course.vue'
+import Error404 from '../views/Error404.vue'
+import Error500 from '../views/Error500.vue'
+import Error403 from '../views/Error403.vue'
+
+
+
 
 
 const isAuthenticated = () => !!localStorage.getItem('token')
@@ -37,6 +43,12 @@ const routes = [
   { path: '/me', component: Profile, beforeEnter: requireAuth },
   { path: '/profile/complete', component: ProfileComplete, beforeEnter: requireAuth },
   { path: '/course', component: Course, beforeEnter: requireAuth },
+  { path: '/500', name: 'ServerError', component: Error500 },
+  { path: '/:pathMatch(.*)*', name: 'NotFound', component: Error404 },
+  { path: '/403', name: 'Forbidden', component: Error403 },
+
+
+  
 
   
 ]
